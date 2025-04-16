@@ -7,28 +7,31 @@
 </head>
 <body>
     <h1>Library</h1>
-
+    <span onclick="openNav()">Open</span>
     <button id="show">Show</button>
 
     <div>
-        <dialog id="favD">
-            <label>
-                Add new Book
-            </label>
-    
-            <form>
-                <label for="bbookTitle">Title</label>
-                <input id="bookTitle" name="bookTitle" type="text" placeholder="default" required>
-                <label for="bookAuthor">Author</label>
-                <input id="bookAuthor" name="bookAuthor" type="text" required>
-                <label for="bookPages">No. of Pages</label>
-                <input id="bookPages" name="bookPages" type="number" required>
-                <label for="readStatus">Read</label>
-                <input id="readStatus" name="readStatus" type="checkbox" required>
-                <button id="answer" type="submit">Submit</button>
-                <button id="cancel" formmethod="dialog">Cancel</button>
-            </form>
-        </dialog>
+
+        <div class="sideNav">
+            <label for="bbookTitle">Title</label>
+            <input id="bookTitle" name="bookTitle" type="text" placeholder="default" required>
+
+            <label for="bookAuthor">Author</label>
+            <input id="bookAuthor" name="bookAuthor" type="text" required>
+
+            <label for="bookPages">No. of Pages</label>
+            <input id="bookPages" name="bookPages" type="number">
+
+            <label for="readStatus">Read</label>
+            <input id="readStatus" name="readStatus" type="checkbox" required>
+            
+            <label for="bookCover">Cover</label>
+            <input id="bookCover" name="bookCover" type="file" accept="image/png,image/jpeg">
+
+            <button id="answer" type="submit">Submit</button>
+            <button id="cancel" formmethod="dialog">Cancel</button>
+        </div>
+
     </div>
 
     <div class="display">

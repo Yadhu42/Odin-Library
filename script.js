@@ -1,22 +1,27 @@
 const root = document.querySelector(`root`);
 const show = document.querySelector(`#show`);
-const dialog = document.querySelector(`#favD`);
 const answer = document.querySelector(`#answer`);
 const title = document.querySelector(`#bookTitle`);
 const auth = document.querySelector(`#bookAuthor`);
 const page = document.querySelector(`#bookPages`);
 const read = document.querySelector(`#readStatus`);
+const coverimg = document.querySelector(`#bookCover`);
 const display = document.querySelector(`.display`);
+
 
 const library = [];
 
-function Book(name, author, pages, status){
-    console.log(status);
+function Book(name, author, pages, status, cover){
+    if(!new.target){
+        throw new Error(`You must invoke this constructor via new Object`);
+    }
+
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.setId();
     this.setRead(status);
+    this.cover = cover;
 }
 
 Book.prototype.setId = function (){
@@ -24,17 +29,38 @@ Book.prototype.setId = function (){
 }
 
 Book.prototype.setRead = function(status){
-    this.read = status ? `read` : `unread`;
+    this.read = status ? true:false;
 }
 
-function addBook(name,author,nop,readStatus){
-    
-    let book = new Book(name,author,nop,readStatus);
+function addBook(name,author,nop,read,cover){
+    let book = new Book(name,author,nop,read,cover);
     library.push(book);
-    console.log(library);
-
     addToDisplay();
-    
+}
+
+function submitEntry(name,author,nop,readStatus,cover){
+    if(!name){
+        throw new Error(`You must enter the name of the book`);
+    }
+    if(!author){
+        throw new Error(`You must enter the name of the author`);
+    }
+
+    if(cover[Object]){
+        const reader = new FileReader();
+        reader.readAsDataURL(cover);
+
+        reader.addEventListener(`load`,(event) =>{
+            const coversrc = event.target.result;
+            addBook(name,author,nop,readStatus, coversrc);
+
+        });
+
+    }
+    else{
+        addBook(name,author,nop,readStatus,cover);
+    }
+
 }
 
 function removeBook(id){
@@ -47,7 +73,6 @@ function removeBook(id){
     });
 
     library.splice(pos,1);
-    console.log(library);
     addToDisplay();
 }
 
@@ -64,23 +89,61 @@ function showDisplay(book){
     const totalPages = document.createElement(`p`);
     totalPages.textContent = book.pages;
 
-    const finished = document.createElement(`p`);
-    finished.textContent = book.read;
+    const readStatus = document.createElement(`label`);
+    readStatus.setAttribute(`for`,`checkbox`);
+    readStatus.textContent=`finished`
+
+    const changeStatus = document.createElement(`input`);
+    changeStatus.setAttribute(`type`,`checkbox`);
+    changeStatus.checked = book.read? true:false;
+
+    const coverPic = document.createElement(`img`);
+    coverPic.setAttribute(`class`,`coverPhoto`);
+    coverPic.src=book.cover;
 
     const del = document.createElement(`button`);
     del.textContent = `Delete`;
     
+    card.appendChild(coverPic);
     card.appendChild(title);
     card.appendChild(writer);
     card.appendChild(totalPages);
-    card.appendChild(finished);
+    card.appendChild(readStatus);
+    card.appendChild(changeStatus);
     card.appendChild(del);
 
     del.addEventListener(`click`, ()=>{
         removeBook(book.id);
     });
+
+    changeStatus.addEventListener(`click`,() =>{
+        if(changeStatus.checked){
+            book.setRead(changeStatus.checked);
+        }
+    });
+
     display.appendChild(card);
+    console.log(library);
 }
+
+const defaultLib = [
+    {name: "The Fellowship of the Ring",
+    author: "J.R.R. Tolkien", 
+    pages: '423',
+    read: false,
+    cover: "./images/lotr.jpg"
+    }];
+
+
+
+function showDefaultLib(){
+    defaultLib.forEach((book) =>{
+        submitEntry(book.name,book.author,book.pages,book.read,book.cover);
+    });
+}
+
+showDefaultLib();
+
 
 function addToDisplay(){
     display.innerHTML=``;
@@ -89,12 +152,8 @@ function addToDisplay(){
     })
 }
 
-show.addEventListener(`click`,() =>{
-    dialog.showModal();
-});
-
 answer.addEventListener('click',(event) =>{
     event.preventDefault();
-    addBook(title.value,auth.value,page.value,read.checked);
-    dialog.close();
+    console.log(coverimg.files[0]);
+    submitEntry(title.value,auth.value,page.value,read.checked,coverimg.files[0]);
 });
