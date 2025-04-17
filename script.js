@@ -46,7 +46,7 @@ function submitEntry(name,author,nop,readStatus,cover){
         throw new Error(`You must enter the name of the author`);
     }
 
-    if(cover[Object]){
+    if(typeof(cover)===`object`){
         const reader = new FileReader();
         reader.readAsDataURL(cover);
 
@@ -79,6 +79,7 @@ function removeBook(id){
 function showDisplay(book){
     const card = document.createElement(`div`);
     card.setAttribute(`id`,book.id);
+    card.setAttribute(`class`,`card`);
 
     const title = document.createElement(`p`);
     title.textContent = book.name;
@@ -87,15 +88,20 @@ function showDisplay(book){
     writer.textContent = book.author;
 
     const totalPages = document.createElement(`p`);
-    totalPages.textContent = book.pages;
+    totalPages.textContent = `${book.pages} pages`;
 
     const readStatus = document.createElement(`label`);
     readStatus.setAttribute(`for`,`checkbox`);
-    readStatus.textContent=`finished`
+    readStatus.textContent=`Completed`;
 
     const changeStatus = document.createElement(`input`);
     changeStatus.setAttribute(`type`,`checkbox`);
     changeStatus.checked = book.read? true:false;
+
+    const readCheck = document.createElement(`div`);
+    readCheck.setAttribute(`class`,`readCheck`);
+    readCheck.appendChild(readStatus);
+    readCheck.appendChild(changeStatus);
 
     const coverPic = document.createElement(`img`);
     coverPic.setAttribute(`class`,`coverPhoto`);
@@ -104,13 +110,20 @@ function showDisplay(book){
     const del = document.createElement(`button`);
     del.textContent = `Delete`;
     
-    card.appendChild(coverPic);
-    card.appendChild(title);
-    card.appendChild(writer);
-    card.appendChild(totalPages);
-    card.appendChild(readStatus);
-    card.appendChild(changeStatus);
-    card.appendChild(del);
+    const content = document.createElement(`div`);
+    content.setAttribute(`class`,`cardContent`);
+
+    const bookSleeve = document.createElement(`div`);
+    bookSleeve.setAttribute(`class`,`bookSleeve`);
+
+    bookSleeve.appendChild(coverPic);
+    content.appendChild(title);
+    content.appendChild(writer);
+    content.appendChild(totalPages);
+    content.appendChild(readCheck);
+    content.appendChild(del);
+    card.appendChild(bookSleeve);
+    card.append(content);
 
     del.addEventListener(`click`, ()=>{
         removeBook(book.id);
@@ -154,6 +167,11 @@ function addToDisplay(){
 
 answer.addEventListener('click',(event) =>{
     event.preventDefault();
-    console.log(coverimg.files[0]);
+    console.log(typeof(coverimg.files[0]));
     submitEntry(title.value,auth.value,page.value,read.checked,coverimg.files[0]);
 });
+
+function openNav(){
+    document.querySelector(`.sideNav`).setAttribute(`style`,`width:300px`);
+    display.setAttribute(`style`, `margin-left:300px`);
+}

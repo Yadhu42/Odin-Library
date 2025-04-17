@@ -3,39 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Library</h1>
-    <span onclick="openNav()">Open</span>
-    <button id="show">Show</button>
 
-    <div>
+    <div class="sideNav">
+        
+        <div class="userInput">
 
-        <div class="sideNav">
-            <label for="bbookTitle">Title</label>
-            <input id="bookTitle" name="bookTitle" type="text" placeholder="default" required>
+            <div class="bookName">
+                <label for="bbookTitle">Title</label>
+                <input id="bookTitle" name="bookTitle" type="text" placeholder="default" required>
+            </div>
+         
+            <div class="bookAuthor">
+                <label for="bookAuthor">Author</label>
+                <input id="bookAuthor" name="bookAuthor" type="text" required>
+            </div>
 
-            <label for="bookAuthor">Author</label>
-            <input id="bookAuthor" name="bookAuthor" type="text" required>
-
-            <label for="bookPages">No. of Pages</label>
-            <input id="bookPages" name="bookPages" type="number">
-
-            <label for="readStatus">Read</label>
-            <input id="readStatus" name="readStatus" type="checkbox" required>
+            <div class="bookPages">
+                <label for="bookPages">No. of Pages</label>
+                <input id="bookPages" name="bookPages" type="number">
+            </div>
+    
+            <div class="readStatus">
+                <label for="readStatus">Read</label>
+                <input id="readStatus" name="readStatus" type="checkbox" required>
+            </div>
+    
+            <div class="bookCover">   
+                <label for="bookCover">Cover</label>
+                <input id="bookCover" name="bookCover" type="file" accept="image/png,image/jpeg">
+            </div>
             
-            <label for="bookCover">Cover</label>
-            <input id="bookCover" name="bookCover" type="file" accept="image/png,image/jpeg">
-
-            <button id="answer" type="submit">Submit</button>
-            <button id="cancel" formmethod="dialog">Cancel</button>
+            <div class="ansewrBtns">
+                <button id="answer" type="submit">Submit</button>
+                <button id="cancel" formmethod="dialog">Cancel</button>
+            </div>
+    
         </div>
-
     </div>
 
+    <span onclick="openNav()">open</span>
     <div class="display">
-        
     </div>
     
 <script src="./script.js"></script>
