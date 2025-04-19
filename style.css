@@ -6,20 +6,37 @@ body{
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: seashell;
+    background-color:  #A5BFCC;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
 }
 
 .sideNav{
-    background-color: brown;
+    background-color:#7E99A3;
     height: 100%;
-    width: 0;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.5s ease;
+    transition: 0.5s ease-out;
     padding-top: 50px;
+    transform: scaleX(0);
+    transform-origin: top left;
+}
+
+.closeNav{
+    position: absolute;
+    left: 260px;
+    top: 7px;
+    cursor: pointer;
+}
+
+.adder{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
 }
 
 .userInput{
@@ -37,7 +54,7 @@ body{
     align-items: center;
     gap: 5px;
     font-family: "Inter", sans-serif;
-    
+    font-weight: 500;
 }
 
 #bookTitle,#bookAuthor,#bookPages{
@@ -50,16 +67,23 @@ body{
 }
 
 .card{
-    border: solid 1px black;
-    height: 300px;
+    height: 380px;
     display: grid;
+    grid-template-rows: 1fr auto ;
+    border: 5px solid#F4EDD3;
+    background-color: #7e99a35d;
+    padding: auto;
 }
 
 .bookSleeve{
     display: grid;
     justify-content: center;
     align-items: center;
-    padding: 5px 5px 0 5px;
+    padding: 5px 5px;
+}
+
+.bookSleeve img{
+    border: 3px solid#F4EDD3;
 }
 
 .cardContent{
@@ -68,27 +92,60 @@ body{
     align-items: center;
     text-align: center;
     font-family: "Inter", sans-serif;
-    padding: 5px;
+    font-size: 18px;
+    padding: 0 5px 5px 5px;
+    grid-auto-rows: max-content;
 }
 
-.cardContent p{
+#bookWhat,#bookWho{
     margin: 0;
+    font-weight: 600;
+}
+
+#bookWhat{
+    font-size: 24px;
+}
+
+#bookWho{
+    font-size: 20px;
+}
+
+#bookHow{
+    margin: 0;
+    font-size: 16px;
+}
+
+.removeBtn{
+    margin-top: 8px;
+}
+
+.cardContent svg{
+    cursor: pointer;
 }
 
 .readCheck{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 3px;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.readCheck input{
+    accent-color: #213448;
+    margin: 0 3px;
 }
 
 .display{
-    transition: margin-left 0.5s ease;
-    padding: 30px;
+    transition: margin-left 0.5s ease-out;
+    padding: 60px;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     gap: 30px;
 }
 
 .coverPhoto{
-    width: 130px;
+    width: 140px;
+    height: 200px;
 }

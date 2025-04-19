@@ -82,12 +82,15 @@ function showDisplay(book){
     card.setAttribute(`class`,`card`);
 
     const title = document.createElement(`p`);
+    title.setAttribute(`id`,`bookWhat`);
     title.textContent = book.name;
 
     const writer = document.createElement(`p`);
+    writer.setAttribute(`id`,`bookWho`);
     writer.textContent = book.author;
 
     const totalPages = document.createElement(`p`);
+    totalPages.setAttribute(`id`,`bookHow`);
     totalPages.textContent = `${book.pages} pages`;
 
     const readStatus = document.createElement(`label`);
@@ -107,9 +110,17 @@ function showDisplay(book){
     coverPic.setAttribute(`class`,`coverPhoto`);
     coverPic.src=book.cover;
 
-    const del = document.createElement(`button`);
-    del.textContent = `Delete`;
-    
+    const del = document.createElement(`svg`);
+    del.innerHTML = `<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                        <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#F4EDD3"/> </g>
+                    </svg>`;
+
+    const remover = document.createElement(`div`);
+    remover.setAttribute(`class`,`removeBtn`);
+    remover.appendChild(del);
+
     const content = document.createElement(`div`);
     content.setAttribute(`class`,`cardContent`);
 
@@ -121,7 +132,7 @@ function showDisplay(book){
     content.appendChild(writer);
     content.appendChild(totalPages);
     content.appendChild(readCheck);
-    content.appendChild(del);
+    content.appendChild(remover);
     card.appendChild(bookSleeve);
     card.append(content);
 
@@ -140,10 +151,28 @@ function showDisplay(book){
 }
 
 const defaultLib = [
+    {name: "Crime and Punishment",
+    author: "Fyodor Dostoevsky", 
+    pages: '527',
+    read: false,
+    cover: "./images/CnP.jpg"
+    },
+    {name: "Moby Dick",
+    author: "Herman Melville", 
+    pages: '635',
+    read: true,
+    cover: "./images/MB.jpg"
+    },
+    {name: "1984",
+    author: "George Orwell", 
+    pages: '328',
+    read: false,
+    cover: "./images/1984.jpg"
+    },
     {name: "The Fellowship of the Ring",
     author: "J.R.R. Tolkien", 
     pages: '423',
-    read: false,
+    read: true,
     cover: "./images/lotr.jpg"
     }];
 
@@ -172,6 +201,11 @@ answer.addEventListener('click',(event) =>{
 });
 
 function openNav(){
-    document.querySelector(`.sideNav`).setAttribute(`style`,`width:300px`);
+    document.querySelector(`.sideNav`).setAttribute(`style`,`transform:scaleX(1);`);
     display.setAttribute(`style`, `margin-left:300px`);
+}
+
+function closeNav(){
+    document.querySelector(`.sideNav`).setAttribute(`style`,`transform:scaleX(0);`);
+    display.setAttribute(`style`, `margin-left:0px`);
 }

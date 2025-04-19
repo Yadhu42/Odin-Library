@@ -3,16 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:opsz,wght@14..32,100..900&family=McLaren&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Unbounded:wght@200..900&display=swap"
+    rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
 
     <div class="sideNav">
-        
+        <span class="closeNav" onclick="closeNav()">
+            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                <g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#213448"/> </g>
+            </svg>
+        </span>
         <div class="userInput">
 
-            <div class="bookName">
+            <div class="bookTitle">
                 <label for="bbookTitle">Title</label>
                 <input id="bookTitle" name="bookTitle" type="text" placeholder="default" required>
             </div>
@@ -28,7 +38,7 @@
             </div>
     
             <div class="readStatus">
-                <label for="readStatus">Read</label>
+                <label for="readStatus">Completed</label>
                 <input id="readStatus" name="readStatus" type="checkbox" required>
             </div>
     
@@ -37,15 +47,23 @@
                 <input id="bookCover" name="bookCover" type="file" accept="image/png,image/jpeg">
             </div>
             
-            <div class="ansewrBtns">
+            <div class="answerBtns">
                 <button id="answer" type="submit">Submit</button>
-                <button id="cancel" formmethod="dialog">Cancel</button>
+                <button id="cancel" onclick="closeNav()" formmethod="dialog">Cancel</button>
             </div>
     
         </div>
     </div>
 
-    <span onclick="openNav()">open</span>
+    <span class="adder" onclick="openNav()">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+            <g id="SVGRepo_iconCarrier">
+            <path stroke="#F4EDD3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6M8 3v9l3-3 3 3V3M8 3h6m0 0h4a2 2 0 0 1 2 2v7m-1 4v3m0 3v-3m0 0h3m-3 0h-3"/>
+            </g>
+        </svg>
+    </span>
     <div class="display">
     </div>
     
