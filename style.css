@@ -74,7 +74,6 @@ body{
     background-color: #7e99a35d;
     padding: auto;
     transition: 0.3s ease-in-out;
-    cursor: pointer;
 }
 
 .card:hover{
